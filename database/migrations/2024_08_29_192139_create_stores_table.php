@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('description')->nullable();
             $table->text('about');
-            
+
             $table->string('logo')->nullable();
             $table->string('phone');
             $table->string('whatsapp');
             $table->timestamps();
         });
+
     }
 
     /**
