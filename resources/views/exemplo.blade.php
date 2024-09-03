@@ -1,0 +1,4 @@
+
+<hr>
+@dump($stores)
+
