@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+  public function __construct(private Store $store)
+  {
+
+  }
   public function index(){
    // $stores =Store::find(2);// find: se não encontrar null // findOrFail ele dá a tela de error 404
-   $stores =Store::all();
-    return view('exemplo',compact('stores'));
+   $stores =$this->store->paginate(10);
+    return view('admin.stores.index',compact('stores'));
   }
   public function store(){
     // // Criar: Active Record
