@@ -11,9 +11,11 @@ class StoreController extends Controller
   {
 
   }
-  public function index(){
-   // $stores =Store::find(2);// find: se não encontrar null // findOrFail ele dá a tela de error 404
-   $stores =$this->store->paginate(10);
+  public function index()
+  {
+
+   $stores= $this->store->paginate(5);
+
     return view('admin.stores.index',compact('stores'));
   }
   public function store(){
