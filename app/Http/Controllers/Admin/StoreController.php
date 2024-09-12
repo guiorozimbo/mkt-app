@@ -18,6 +18,10 @@ class StoreController extends Controller
 
     return view('admin.stores.index',compact('stores'));
   }
+  public function create()
+  {
+    return view('admin.stores.create');
+  }
   public function store(){
     // // Criar: Active Record
    // $store = new Store();
@@ -43,19 +47,16 @@ class StoreController extends Controller
   //  'whatsapp' => '+4008922',
    // 'description' => 'descriçao da loja',
   //]);
-  //$store = Store::findOrFail(9);
-  //$store->update([
-   //'name' => 'loja exemplo 3',
-   //'about' => 'Contexto da loja 3',
-   //'phone' => '+4008922',
-   //'whatsapp' => '+4008922',
-  // ]);
-
+        //$store = Store::findOrFail(9);
+        //$store->update([
+        //'name' => 'loja exemplo 3',
+        //'about' => 'Contexto da loja 3',
+        //'phone' => '+4008922',
+        //'whatsapp::findOrFail(9);
+      //$store -> delete();
 //dump($store);
+  }
+  public function update(){
 
-//Delete
-//$store = Store::findOrFail(9);
-//$store -> delete();
-//dump($store);
   }
 }
