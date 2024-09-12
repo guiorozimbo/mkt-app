@@ -22,7 +22,9 @@ class StoreController extends Controller
   {
     return view('admin.stores.create');
   }
-  public function store(){
+  public function store(Request $request){
+   $store= Store::create($request->all());
+   return redirect()->route(route: 'admin.stores.index')->with(key: 'sucesso',value: 'Loja criada com sucesso!');
     // // Criar: Active Record
    // $store = new Store();
    // $store->name = 'loja exemplo';
@@ -57,6 +59,10 @@ class StoreController extends Controller
 //dump($store);
   }
   public function update(){
+
+  }
+
+  public function destroy(){
 
   }
 }

@@ -8,32 +8,37 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+    <form action="{{route('admin.stores.store')}}" method="POST">
 
-                    <div class="w-full mb-6">
-                        <label for="">Nome Loja</label>
-                        <input id="" class="w-full border border-gray-700 rounded">
-                    </div>
+@csrf
+        <div class="w-full mb-6">
+            <label for="name">Nome Loja</label>
+            <input name="name" id="name" class="w-full border border-gray-700 rounded bg-gray-900">
+        </div>
 
-                    <div class="w-full mb-6">
-                        <label for="">Descrição</label>
-                        <input id=""  class="w-full border border-gray-700 rounded">
-                    </div>
+        <div class="w-full mb-6">
+            <label for="description">Descrição</label>
+            <input name="description" id="description"  class="w-full border border-gray-700 rounded bg-gray-900">
+        </div>
 
-                    <div class="w-full mb-6">
-                        <label for=""></label>
-                        <input id=""  class="w-full border border-gray-700 rounded">
-                    </div>
+        <div class="w-full mb-6">
+            <label for="about">Sobre a Loja</label>
+            <textarea name="about"id="about" rows="4" class="w-full border border-gray-700 rounded bg-gray-900"></textarea>
+        </div>
 
-                    <div class="w-full mb-6">
-                        <label for=""></label>
-                        <input id=""  class="w-full border border-gray-700 rounded">
-                    </div>
+        <div class="w-full mb-6">
+            <label for="phone">Telefone (Fixo)</label>
+            <input name="phone" id="phone"  type="text" class="w-full border border-gray-700 rounded bg-gray-900">
+        </div>
 
-                    <div class="w-full mb-6">
-                        <label for=""></label>
-                        <input id=""  class="w-full border border-gray-700 rounded">
-                    </div>
-    </div>
+        <div class="w-full mb-6">
+            <label for="whatsapp">Whatsapp / Celular</label>
+            <input name="whatsapp" id="whatsapp" type="text" class="w-full border border-gray-700 rounded bg-gray-900">
+        </div>
+
+        <button class="px-4 py-2 border border-green-900 bg-green-700 hover:bg-green-900 rounded transition duration-300 ease-in-out">Salvar</button>
+</div>
+    </form>
     </div>
     </div>
     </div>
