@@ -31,5 +31,14 @@ Route::get('/admin/stores', [\App\Http\Controllers\Admin\StoreController::class,
 Route::get('/admin/stores/create', [\App\Http\Controllers\Admin\StoreController::class,'create'])
     ->name('admin.stores.create');
 
+    Route::get('/admin/stores/{store}/edit', [\App\Http\Controllers\Admin\StoreController::class,'edit'])
+    ->name('admin.stores.edit');
+
 Route::post('/admin/stores/store', [\App\Http\Controllers\Admin\StoreController::class,'store'])
     ->name('admin.stores.store');
+
+    Route::post('/admin/stores/{store}/update', [\App\Http\Controllers\Admin\StoreController::class,'update'])
+    ->name('admin.stores.update');
+
+    Route::get('/admin/stores/{store}/destroy', [\App\Http\Controllers\Admin\StoreController::class,'destroy'])
+    ->name('admin.stores.destroy');

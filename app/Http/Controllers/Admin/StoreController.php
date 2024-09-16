@@ -14,7 +14,7 @@ class StoreController extends Controller
   public function index()
   {
 
-   $stores= $this->store->paginate(5);
+   $stores= $this->store->paginate(15);
 
     return view('admin.stores.index',compact('stores'));
   }
@@ -23,7 +23,9 @@ class StoreController extends Controller
     return view('admin.stores.create');
   }
   public function store(Request $request){
-   $store= Store::create($request->all());
+
+   $this->store->create($request->all());
+
    return redirect()->route(route: 'admin.stores.index')->with(key: 'sucesso',value: 'Loja criada com sucesso!');
     // // Criar: Active Record
    // $store = new Store();
@@ -58,11 +60,23 @@ class StoreController extends Controller
       //$store -> delete();
 //dump($store);
   }
-  public function update(){
+  public function edit(string $store)
+  {
+    $store= $this->store->findOrFail($store);
 
+    return view('admin.stores.edit', compact('store'));
+  }
+  public function update(string $store, Request $request){
+    $store= $this->store->findOrFail($store);
+    $store->update($request->all());
+     return redirect()->back();
   }
 
-  public function destroy(){
+  public function destroy(string $store){
+    
+    $store= Store::findOrFail($store);
+    $store->delete();
 
+    return redirect()->back();
   }
 }
