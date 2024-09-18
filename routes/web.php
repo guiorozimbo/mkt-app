@@ -25,7 +25,7 @@ Route::middleware('auth')
 
 require __DIR__.'/auth.php';
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('stores', \App\Http\Controllers\Admin\StoreController::class);
 });
 

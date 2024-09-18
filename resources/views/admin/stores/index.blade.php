@@ -34,9 +34,17 @@
                             <td class="font-normal px-4 py-2">{{$store->created_at->diffForhumans()}}</td>
                             <td class="font-normal px-4 py-2">
                                 <div class="flex flex-around gap-2">
-                                    <a href="{{route('admin.stores.edit',['store' => $store->id])}}" class="px-4 py-2 border border-blue-900 bg-blue-600 text-white hover:bg-blue-900 transition duration-250 ease-in rounded-md">Editar</a>
-                                    <a href="{{route('admin.stores.destroy',['store' => $store->id])}}" class="px-4 py-2 border border-red-900 bg-red-600 text-white hover:bg-red-900 transition duration-250 ease-in rounded-md">Deletar</a>
+
+                                 <a href="{{route('admin.stores.edit',['store' => $store->id])}}" class="px-4 py-2 border border-blue-900 bg-blue-600 text-white hover:bg-blue-900 transition duration-250 ease-in rounded-md">Editar</a>
+                            <form action="{{route('admin.stores.destroy',['store' => $store->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="store_id" value="{{$store->id}}">
+                                <button type="submit" class="px-4 py-2 border border-red-900 bg-red-600 text-white hover:bg-red-900 transition duration-250 ease-in rounded-md">Excluir</button>
+                            </form>
                                 </div>
+
                             </td>
                         </tr>
                         @empty
