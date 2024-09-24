@@ -1,0 +1,19 @@
+[90m= [39m[34;4mApp\Models\Store[39;24m {#6058
+    [34mid[39m: [35m1[39m,
+    [34mname[39m: "[32merror ut[39m",
+    [34mdescription[39m: "[32mSint repudiandae nihil aut aut aliquid quae.[39m",
+    [34mabout[39m: """
+      [32mEst quis occaecati odio. Maiores accusantium veniam maiores magnam iusto eius. Quis beatae omnis eum fuga magni eligendi odit.[39m\n
+      \n
+      [32mLaborum dolorem ut illo accusamus et ratione modi. Qui aliquid numquam qui dolorem temporibus quia culpa ad. In sunt nostrum facilis eaque consectetur. Corporis fuga autem quis at et.[39m\n
+      \n
+      [32mAut ex sit aut alias aut et. Sit nulla soluta voluptatem atque vel repudiandae. Aperiam est voluptatem sit quia libero iure eum.[39m
+      """,
+    [34mlogo[39m: [36mnull[39m,
+    [34mphone[39m: "[32m1-800-517-6619[39m",
+    [34mwhatsapp[39m: "[32m+18024335321[39m",
+    [34mcreated_at[39m: "[32m2024-09-23 17:14:38[39m",
+    [34mupdated_at[39m: "[32m2024-09-23 17:14:38[39m",
+    [34muser_id[39m: [35m1[39m,
+  }
+
