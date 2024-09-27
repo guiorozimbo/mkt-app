@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
 use App\Models\Product;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,15 +23,16 @@ class ProductController extends Controller
     $products = $this->product->paginate(10);
     return view('admin.products.index',compact('products'));
   }
-  public function create()
+  public function create(Store $store)
   {
-    return view('admin.products.create');
+    $stores = $store->all(['id','name']);
+    return view('admin.products.create', compact('stores'));
   }
   public function store(ProductFormRequest $request){
 
    $this->product->create($request->all());
 
-   return redirect()->route(route: 'admin.stores.index')->with(key: 'sucesso',value: 'Loja criada com sucesso!');
+   return redirect()->route( 'admin.products.index');
 
   }
   public function edit(string $product)
