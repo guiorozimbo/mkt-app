@@ -22,8 +22,9 @@ class StoreController extends Controller
     return view('admin.stores.create');
   }
   public function store(StoreFormRequest $request){
-
-   $this->store->create($request->all());
+$user = auth()->user();
+$user->store()->create($request->all());
+   
 
    return redirect()->route(route: 'admin.stores.index')->with(key: 'sucesso',value: 'Loja criada com sucesso!');
 

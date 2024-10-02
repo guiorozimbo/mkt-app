@@ -28,18 +28,25 @@ class ProductController extends Controller
     $stores = $store->all(['id','name']);
     return view('admin.products.create', compact('stores'));
   }
-  public function store(ProductFormRequest $request){
+  public function store(ProductFormRequest $request, Store $store){
+ //$store = $store->findOrFail(($request->store));
 
-   $this->product->create($request->all());
+   //$store->products()->create($request->except('store'));
+    //$data = $request->all();
+    //$data['store_id'] = $data['store'];
 
+   //$product = $this->product->create($data);
+    //$product->store->associate($store->findOrFail( $request->store));
+    //$product->save();
    return redirect()->route( 'admin.products.index');
 
   }
-  public function edit(string $product)
+  public function edit(string $product, Store $store)
   {
+    $stores = $store->all(['id','name']);
     $product= $this->product->findOrFail($product);
 
-    return view('admin.products.edit', compact('products'));
+    return view('admin.products.edit', compact('product','stores'));
   }
   public function update(string $product, ProductFormRequest $request){
     $product= $this->product->findOrFail($product);

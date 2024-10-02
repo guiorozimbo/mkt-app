@@ -13,7 +13,7 @@
 
 @csrf
         <div class="w-full mb-6">
-            <label for="store">Loja</label>
+            <label for="store">Produto</label>
 
              <select name="store"
              id="store"  class="w-full border border-gray-700 rounded bg-gray-900">
@@ -23,7 +23,7 @@
              @endforeach
             </select>
 
-            @error('name')
+            @error('store')
             <div
             class="w-full my-4 p-4 border border-red-900 bg-red-300 text-red-900 rounded">{{$message}}
 

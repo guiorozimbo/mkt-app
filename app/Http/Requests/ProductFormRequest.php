@@ -23,7 +23,7 @@ class ProductFormRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'description'=>'nullable|min:20'
+            'description'=>'nullable|min:20',
         ];
     }
 
