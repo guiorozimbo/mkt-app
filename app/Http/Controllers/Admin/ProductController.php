@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
@@ -23,15 +24,17 @@ class ProductController extends Controller
     $products = $this->product->paginate(10);
     return view('admin.products.index',compact('products'));
   }
-  public function create(Store $store)
+  public function create(Store $store, Category $category)
   {
+    $categories = $category->all(['id','name']);
     $stores = $store->all(['id','name']);
-    return view('admin.products.create', compact('stores'));
+
+    return view('admin.products.create', compact('stores','categories'));
   }
   public function store(ProductFormRequest $request, Store $store){
- //$store = $store->findOrFail(($request->store));
+ $store = $store->findOrFail(($request->store));
 
-   //$store->products()->create($request->except('store'));
+$store->products()->create($request->except('store'));
     //$data = $request->all();
     //$data['store_id'] = $data['store'];
 
