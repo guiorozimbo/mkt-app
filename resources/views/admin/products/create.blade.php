@@ -63,10 +63,11 @@
                         <div class="grid grid-cols-4 gap-4">
                             @foreach ($categories as $category )
                             <div class="w-[150px]">
-                                <input type="checkbox" name="categories[]"></input>
+                                <input type="checkbox" value="{{$category->id}}" name="categories[]">{{$category->name}}</input>
                             </div>
                                 @endforeach
                         </div>
+                        
                     </div>
 
                         <button class="px-4 py-2 border border-green-900 bg-green-700 hover:bg-green-900 rounded transition duration-300 ease-in-out">Salvar</button>

@@ -15,25 +15,6 @@
 
 <input type="hidden" name="_method" value="PUT">
 
-<div class="w-full mb-6">
-    <label for="store">Produto</label>
-
-     <select name="store"
-     id="store"  class="w-full border border-gray-700 rounded bg-gray-900">
-
-     @foreach ($stores as $store )
-        <option
-        selected="{{$store->products->contains($product)}}" value="{{$store->id}}">{{$store->name}}</option>
-     @endforeach
-    </select>
-
-    @error('store')
-    <div
-    class="w-full my-4 p-4 border border-red-900 bg-red-300 text-red-900 rounded">{{$message}}
-
-    </div>
-     @enderror
-</div>
 
         <div class="w-full mb-6">
             <label for="name">Nome do Produto</label>
@@ -53,7 +34,16 @@
              @enderror
         </div>
 
+        <div class="w-full mb-6">
 
+            <label for="w-full mb-10">Categorias</label>
+        <div class="grid grid-cols-4 gap-4">
+            @foreach ($categories as $category )
+            <div class="w-[150px]">
+                <input type="checkbox" @checked($product->categories->contains($category)) value="{{$category->id}}" name="categories[]">{{$category->name}}</input>
+            </div>
+                @endforeach
+        </div>
 
         <button class="px-4 py-2 border border-green-900 bg-green-700 hover:bg-green-900 rounded transition duration-300 ease-in-out">Salvar</button>
 </div>

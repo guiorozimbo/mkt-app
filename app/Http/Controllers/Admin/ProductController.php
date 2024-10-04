@@ -33,8 +33,11 @@ class ProductController extends Controller
   }
   public function store(ProductFormRequest $request, Store $store){
  $store = $store->findOrFail(($request->store));
+ $store = auth()->user()->store;
+$product=$store->products()->create($request->except('store','categories'));
 
-$store->products()->create($request->except('store'));
+if($request->categories) $product->categories()->sync($request->categories);
+
     //$data = $request->all();
     //$data['store_id'] = $data['store'];
 
@@ -44,16 +47,22 @@ $store->products()->create($request->except('store'));
    return redirect()->route( 'admin.products.index');
 
   }
-  public function edit(string $product, Store $store)
+  public function edit(string $product, Store $store, Category $category)
   {
+    $categories = $category->all(['id','name']);
     $stores = $store->all(['id','name']);
     $product= $this->product->findOrFail($product);
 
-    return view('admin.products.edit', compact('product','stores'));
+    return view('admin.products.edit', compact('product','stores','categories'));
   }
   public function update(string $product, ProductFormRequest $request){
+    dd($request);
+    $product->categories()->sync($request->categories);
+
+
     $product= $this->product->findOrFail($product);
-    $product->update($request->all());
+
+    $product->update($request->except('categories'));
      return redirect()->back();
   }
 
