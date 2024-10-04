@@ -56,7 +56,7 @@ if($request->categories) $product->categories()->sync($request->categories);
     return view('admin.products.edit', compact('product','stores','categories'));
   }
   public function update(string $product, ProductFormRequest $request){
-    dd($request);
+
     $product->categories()->sync($request->categories);
 
 

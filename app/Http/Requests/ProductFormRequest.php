@@ -24,17 +24,17 @@ class ProductFormRequest extends FormRequest
         return [
 
             'name' => 'required',
-            'description'=>'required|min:20',
+            'description'=>'nullable|min:20',
 
         ];
     }
 
     public function messages(): array{
         return [
-            
-            'name.required' => 'O nome do produto é obrigatório',
-            'description.min' => 'A descrição do produto precisa ter no mínimo 20 caracteres',
-            'description.required' => 'O campo de descrição do produto é obrigatório'
+
+           // 'name.required' => 'O nome do produto é obrigatório',
+            'required' => 'A descrição do produto precisa ter no mínimo 20 caracteres',
+            'min' => 'O campo de descrição do produto é obrigatório'
         ];
     }
 }
