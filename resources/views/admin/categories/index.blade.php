@@ -2,10 +2,10 @@
     <x-slot name="header">
         <div class="w-full flex justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Lojas') }}
+                {{ __('Categorias') }}
             </h2>
 
-            <a href="{{route('admin.stores.create')}}" class="px-4 py-2 border border-green-900 bg-green-600 text-white hover:bg-green-900 transition duration-250 ease-in rounded-md">Criar Loja</a>
+            <a href="{{route('admin.categories.create')}}" class="px-4 py-2 border border-green-900 bg-green-600 text-white hover:bg-green-900 transition duration-250 ease-in rounded-md">Criar Categorias</a>
         </div>
     </x-slot>
 
@@ -19,24 +19,25 @@
                         <thead>
                             <tr class="border-b border-gray-700">
                                 <th class="font-bold text-left px-4 py-2">#</th>
-                                <th class="font-bold text-left px-4 py-2">Loja</th>
+                                <th class="font-bold text-left px-4 py-2">Categorias</th>
                                 <th class="font-bold text-left px-4 py-2">Total Produtos</th>
                                 <th class="font-bold text-left px-4 py-2">Criado Em</th>
                                 <th class="font-bold text-left px-4 py-2">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($stores as $store)
+                            @forelse ($categories as $category)
                                 <tr>
-                                    <td class="font-normal px-4 py-2">{{ $store->id }}</td>
-                                    <td class="font-normal px-4 py-2 w-[40%]">{{ $store->name }}</td>
-                                    <td class="font-normal px-4 py-2">{{ $store->products_count }}</td>
-                                    <td class="font-normal px-4 py-2">{{ $store->created_at->diffForHumans() }}</td>
+                                    <td class="font-normal px-4 py-2">{{ $category->id }}</td>
+
+                                    <td class="font-normal px-4 py-2 w-[40%]">{{ $category->name }}</td>
+                                    <td class="font-normal px-4 py-2">{{ $category->products_count }}</td>
+                                    <td class="font-normal px-4 py-2">{{ $category->created_at->diffForHumans() }}</td>
                                     <td class="font-normal px-4 py-2 w-[15%]">
                                         <div class="flex flex-around gap-2">
-                                            <a href="{{ route('admin.stores.edit', ['store' => $store->id]) }}"
-                                                class="px-4 py-2 border border-blue-900 bg-blue-600 text-white hover:bg-blue-900 transition duration-250 ease-in rounded-md">Editar</a>
-                                            <form action="{{ route('admin.stores.destroy', ['store' => $store->id]) }}"
+                                            <a href="{{route('admin.categories.edit',['category' => $category->id])}}" class="px-4 py-2 border border-blue-900 bg-blue-600 text-white hover:bg-blue-900 transition duration-250 ease-in rounded-md">Editar</a>
+                                            <form
+                                                action="{{ route('admin.categories.destroy', ['category' => $category->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -57,7 +58,7 @@
                     </table>
 
                     <div class="mt-10">
-                        {{ $stores->links() }}
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div>

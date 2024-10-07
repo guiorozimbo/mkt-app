@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Product extends Model
 {
     use HasFactory;
+    protected $withCount = ['categories'];
     protected $fillable = ['name', 'description'];
 public function store(): BelongsTo
     {

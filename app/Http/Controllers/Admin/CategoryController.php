@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Category; // Assuming you have a Category model
-
+use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     public function __construct(private Category $category)
@@ -14,7 +15,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->category->paginate(10);
+        $categories = $this->category->withCount('products')->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -23,10 +24,14 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryFormRequest $request)
     {
-        $this->category->create($request->all());
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully!');
+        $data = $request->all();
+        $data['slug'] = Str::slug($data['name']);
+
+        $this->category->create($data);
+
+        return redirect()->route('admin.categories.index');
     }
 
     public function edit(string $category)

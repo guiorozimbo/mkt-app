@@ -7,6 +7,7 @@ use App\Http\Requests\ProductFormRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Store;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -21,6 +22,7 @@ class ProductController extends Controller
   }
   public function index()
   {
+ 
     $products = $this->product->paginate(10);
     return view('admin.products.index',compact('products'));
   }
@@ -31,21 +33,22 @@ class ProductController extends Controller
 
     return view('admin.products.create', compact('stores','categories'));
   }
-  public function store(ProductFormRequest $request, Store $store){
- $store = $store->findOrFail(($request->store));
- $store = auth()->user()->store;
-$product=$store->products()->create($request->except('store','categories'));
+  public function store(ProductFormRequest $request, Store $store)
+  {
+      $store = auth()->user()->store;
+      $product = $store->products()->create($request->except('store', 'categories'));
 
-if($request->categories) $product->categories()->sync($request->categories);
+      if ($request->categories) $product->categories()->sync($request->categories);
 
-    //$data = $request->all();
-    //$data['store_id'] = $data['store'];
+      // $data = $request->all();
+      // $data['store_id'] = $data['store'];
+      //$this->product->create($data)
 
-   //$product = $this->product->create($data);
-    //$product->store->associate($store->findOrFail( $request->store));
-    //$product->save();
-   return redirect()->route( 'admin.products.index');
+      // $product = $this->product->create($data);
+      // $product->store()->associate($store->findOrFail($request->store));
+      // $product->save();
 
+      return redirect()->route('admin.products.index');
   }
   public function edit(string $product, Store $store, Category $category)
   {
@@ -57,13 +60,13 @@ if($request->categories) $product->categories()->sync($request->categories);
   }
   public function update(string $product, ProductFormRequest $request){
 
-    $product->categories()->sync($request->categories);
-
-
-    $product= $this->product->findOrFail($product);
+    $product = $this->product->findOrFail($product);
 
     $product->update($request->except('categories'));
-     return redirect()->back();
+
+    $product->categories()->sync($request->categories);
+
+    return redirect()->back();
   }
 
   public function destroy(string $store){

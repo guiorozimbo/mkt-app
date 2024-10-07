@@ -23,10 +23,9 @@ class StoreController extends Controller
   }
   public function store(StoreFormRequest $request)
   {
-    auth()->user()->store()->create($request->all());
+    auth()->user()->stores()->create($request->all());
 
-   return redirect()->route(route: 'admin.stores.index')->with(key: 'sucesso',value: 'Loja criada com sucesso!');
-
+    return redirect()->route('admin.stores.index');
   }
   public function edit(string $store)
   {
